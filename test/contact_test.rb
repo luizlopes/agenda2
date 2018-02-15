@@ -7,6 +7,7 @@ class ContactTest < MiniTest::Test
         contact = Contact.new
         assert(contact, "contact is nil")
         assert_respond_to(contact, :name)
+        refute_respond_to(contact, :name=)
         assert_respond_to(contact, :phone)
         assert_respond_to(contact, :email)
     end
