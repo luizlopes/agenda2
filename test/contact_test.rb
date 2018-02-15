@@ -9,8 +9,9 @@ class ContactTest < MiniTest::Test
         assert_respond_to(contact, :name)
         refute_respond_to(contact, :name=)
         assert_respond_to(contact, :phone)
+        assert_respond_to(contact, :phone=)
         assert_respond_to(contact, :email)
+        assert_respond_to(contact, :email=)
     end
-
 
 end
