@@ -7,14 +7,6 @@ class ContactTest < MiniTest::Test
         @contact = Contact.new
     end
 
-    def test_new_contact
-        assert(@contact, "contact is nil")
-        assert_respond_to(@contact, :phone)
-        assert_respond_to(@contact, :phone=)
-        assert_respond_to(@contact, :email)
-        assert_respond_to(@contact, :email=)
-    end
-
     def test_name_field_reader
         assert_respond_to(@contact, :name)
         refute_respond_to(@contact, :name=)
