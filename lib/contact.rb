@@ -1,3 +1,11 @@
+require 'active_file'
+
 class Contact
-    #fields name, phone, email
+    include ActiveFile
+
+    field :name, required: true
+    field :phone
+    field :email
+    
+    #fields name required, phone, email
 end
