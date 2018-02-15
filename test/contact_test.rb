@@ -14,4 +14,10 @@ class ContactTest < MiniTest::Test
         assert_respond_to(contact, :email=)
     end
 
+    def test_id_field_accessor
+        contact = Contact.new
+        assert_respond_to(contact, :id)
+        assert_respond_to(contact, :id=)
+    end
+
 end

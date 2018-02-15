@@ -13,6 +13,8 @@ module ActiveFile
             @fields << Field.new(name, required)
 
             self.class_eval do
+                attr_accessor :id
+
                 if required
                     attr_reader name
                 else
