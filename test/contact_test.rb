@@ -27,4 +27,9 @@ class ContactTest < MiniTest::Test
         assert_respond_to(@contact, :id=)
     end
 
+    def test_initialize_with_required_fields
+        contact = Contact.new name: "Gabs"
+        assert_equal(contact.name, "Gabs")
+    end
+
 end

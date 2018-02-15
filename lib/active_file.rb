@@ -2,6 +2,14 @@ module ActiveFile
 
     def self.included(base)
         base.extend ClassMethods
+
+        base.class_eval do
+            attr_accessor :id
+
+            def initialize(parameters = {})
+                parameters.each { |key, value| instance_variable_set "@#{key}", value }
+            end
+        end
     end
 
     module ClassMethods
@@ -13,8 +21,6 @@ module ActiveFile
             @fields << Field.new(name, required)
 
             self.class_eval do
-                attr_accessor :id
-
                 if required
                     attr_reader name
                 else
