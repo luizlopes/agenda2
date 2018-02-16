@@ -4,7 +4,7 @@ require 'contact'
 class ContactTest < MiniTest::Test
 
     def setup
-        @contact = Contact.new
+        @contact = Contact.new name: "Contact Name"
     end
 
     def test_name_field_reader
@@ -30,6 +30,12 @@ class ContactTest < MiniTest::Test
     def test_initialize_with_required_fields
         contact = Contact.new name: "Gabs"
         assert_equal(contact.name, "Gabs")
+    end
+
+    def test_initialize_with_nil_required_fields
+        assert_raises StandardError do
+            contact = Contact.new
+        end
     end
 
 end

@@ -8,6 +8,15 @@ module ActiveFile
 
             def initialize(parameters = {})
                 parameters.each { |key, value| instance_variable_set "@#{key}", value }
+
+                fields = self.class.fields
+                required_fields = fields.select { |f| f.required }.map { |f| f.name }
+
+                empty_required_fields = required_fields.select { |field_name| instance_variable_get("@#{field_name}") == nil }
+
+                unless empty_required_fields.empty?
+                   raise StandartError.new "Required fields are empty: #{empty_required_fields.join(', ')}"
+                end
             end
         end
     end
@@ -16,7 +25,7 @@ module ActiveFile
         attr_accessor :fields
 
         def field(name, required: false)
-            puts "the field '#{name}' is #{required ? '' : 'not'} required"
+            # puts "the field '#{name}' is #{required ? '' : 'not'} required"
             @fields ||= []
             @fields << Field.new(name, required)
 
