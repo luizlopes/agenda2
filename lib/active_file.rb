@@ -39,6 +39,12 @@ module ActiveFile
                 end
             end
         end
+
+        def find(id)
+            folder_name = self.to_s.downcase
+            repository = RepositoryFactory.createRepository folder_name
+            repository.find id
+        end
     end
 
     class Field

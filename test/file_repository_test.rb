@@ -43,4 +43,14 @@ class FileRepositoryTest < MiniTest::Test
         assert_equal("#{REPO_PATH}/#{object.id}.yml", file_path)
         assert(File.exists? file_path)
     end
+
+    def test_find_by_id
+        object = Contact.new name: "some object with id"
+        object.id = 1000
+        file_path = @file_repository.save object
+
+        object_found = @file_repository.find 1000
+        assert_equal(object, object_found)
+    end
+
 end

@@ -27,6 +27,12 @@ class FileRepository
         file_name
     end
 
+    def find(id)
+        file_name = build_file_name(id)
+        file_data = File.open file_name, "r"
+        deserialize file_data
+    end
+
     private 
 
     def build_file_name(name)
@@ -37,4 +43,7 @@ class FileRepository
         YAML.dump object
     end
 
+    def deserialize(file_data)
+        YAML.load file_data
+    end
 end
