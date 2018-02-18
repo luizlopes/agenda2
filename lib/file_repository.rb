@@ -16,7 +16,7 @@ class FileRepository
         end
 
         unless object.id
-            raise StandardError.new "Object id is null."
+            object.instance_variable_set(:@id, next_id)
         end
 
         file_name = build_file_name(object.id)
@@ -36,9 +36,13 @@ class FileRepository
     def next_id
         all_files_path = build_file_name("*")
         last_file = Dir.glob( all_files_path ).sort.last
-        file_data = File.open last_file, "r"
-        object = deserialize file_data
-        object.id + 1
+        if last_file
+            file_data = File.open last_file, "r"
+            object = deserialize file_data
+            object.id + 1
+        else 
+            1
+        end
     end
 
     private 

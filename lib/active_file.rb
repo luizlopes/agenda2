@@ -57,9 +57,6 @@ module ActiveFile
     def save
         folder_name = self.class.to_s.downcase
         repository = RepositoryFactory.createRepository folder_name
-        unless self.id
-            self.instance_variable_set(:@id, repository.next_id)
-        end
         repository.save self
     end
 

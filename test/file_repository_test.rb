@@ -29,16 +29,9 @@ class FileRepositoryTest < MiniTest::Test
         end
     end
 
-    def test_save_object_with_nil_id
-        assert_raises StandardError do
-            object = Contact.new name: "some object with nil id"
-            @file_repository.save object
-        end
-    end
-
     def test_save
         object = Contact.new name: "some object with id"
-        object.id = 1000
+        #object.id = 1000
         file_path = @file_repository.save object
         assert_equal("#{REPO_PATH}/#{object.id}.yml", file_path)
         assert(File.exists? file_path)
@@ -46,10 +39,10 @@ class FileRepositoryTest < MiniTest::Test
 
     def test_find_by_id
         object = Contact.new name: "some object with id"
-        object.id = 1000
+        #object.id = 1000
         file_path = @file_repository.save object
 
-        object_found = @file_repository.find 1000
+        object_found = @file_repository.find 1
         assert_equal(object, object_found)
     end
 
