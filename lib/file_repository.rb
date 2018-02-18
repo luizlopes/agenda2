@@ -33,6 +33,14 @@ class FileRepository
         deserialize file_data
     end
 
+    def next_id
+        all_files_path = build_file_name("*")
+        last_file = Dir.glob( all_files_path ).sort.last
+        file_data = File.open last_file, "r"
+        object = deserialize file_data
+        object.id + 1
+    end
+
     private 
 
     def build_file_name(name)
