@@ -4,7 +4,7 @@ require 'repository_factory'
 class RepositoryFactoryTest < MiniTest::Test
 
     def test_create_repository_with_folder_name
-        repository = RepositoryFactory.createRepository "folder"
+        repository = RepositoryFactory.createRepository("root", "folder")
         assert(repository)
     end
 
