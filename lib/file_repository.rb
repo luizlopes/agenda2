@@ -2,8 +2,8 @@ require 'YAML'
 
 class FileRepository
 
-    def initialize(root, folder_name)
-        @root, @folder_name = root, folder_name
+    def initialize(root:, folder_name:, file_extension:)
+        @root, @folder_name, @file_extension = root, folder_name, file_extension
     end
 
     def repo_path
@@ -19,13 +19,22 @@ class FileRepository
             raise StandardError.new "Object id is null."
         end
 
-        file_name = "#{repo_path}/#{object.id}.yml"
-        File.open file_name, "w" do |file| 
-            yaml_data = YAML.dump object
-            file.puts yaml_data
+        file_name = build_file_name(object.id)
+        File.open file_name, "w" do |file|             
+            file.puts serialize(object)
         end
 
         file_name
+    end
+
+    private 
+
+    def build_file_name(name)
+        "#{repo_path}/#{name}.#{@file_extension}"
+    end
+
+    def serialize(object)
+        YAML.dump object
     end
 
 end

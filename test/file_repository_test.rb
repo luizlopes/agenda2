@@ -10,7 +10,7 @@ class FileRepositoryTest < MiniTest::Test
 
     def setup
         FileUtils.mkdir_p REPO_PATH
-        @file_repository = FileRepository.new ROOT_PATH, FOLDER_PATH
+        @file_repository = FileRepository.new root: ROOT_PATH, folder_name: FOLDER_PATH, file_extension: "yml"
     end
 
     def teardown
