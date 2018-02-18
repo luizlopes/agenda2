@@ -53,4 +53,8 @@ class FileRepositoryTest < MiniTest::Test
         assert_equal(object, object_found)
     end
 
+    def test_next_id
+        # to do
+    end
+
 end
