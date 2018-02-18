@@ -1,3 +1,5 @@
+require 'repository_factory'
+
 module ActiveFile
 
     def self.included(base)
@@ -41,10 +43,15 @@ module ActiveFile
 
     class Field
         attr_reader :name, :required
-
         def initialize(name, required) 
             @name, @required = name, required
         end
+    end
+
+    def save
+        folder_name = self.class.to_s.downcase
+        repository = RepositoryFactory.createRepository folder_name
+        repository.save self
     end
 
 end
